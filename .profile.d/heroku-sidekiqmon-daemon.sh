@@ -1,4 +1,4 @@
-#!/bin/sh -eu
+#!/bin/bash -eu
 
 SIDEKIQMON=${1:-/app/vendor/bundle/bin/sidekiqmon}
 
