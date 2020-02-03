@@ -8,6 +8,11 @@ if [ ! -x "$SIDEKIQMON" ]; then
 fi
 
 sidekiqmond() {
+  # don't do anything if we don't have a metrics url.
+  if [[ -z "$REDIS_URL" ]] || [[ "${DYNO}" = run\.* ]]; then
+    return 0
+  fi
+
   while true; do
     "$SIDEKIQMON"
     sleep 10
