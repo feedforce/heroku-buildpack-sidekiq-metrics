@@ -3,6 +3,11 @@
 echo "PATH -> $PATH"
 type bundle || true
 
+PATH=/app/bin:"$PATH"
+
+echo "PATH -> $PATH"
+type bundle || true
+
 SIDEKIQMON=${1:-/app/vendor/bundle/bin/sidekiqmon}
 
 setup_metrics() {
