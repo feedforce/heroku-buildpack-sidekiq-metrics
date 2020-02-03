@@ -12,6 +12,9 @@ if [ ! -x "$SIDEKIQMON" ]; then
   exit 1
 fi
 
+echo "PATH -> $PATH"
+type bundle || true
+
 sidekiqmond() {
 
   while true; do
