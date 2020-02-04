@@ -14,5 +14,6 @@ loop do
     puts "measure#sidekiq.#{q.name}.latency=#{q.latency}"
   end
 
+  puts "sidekiq-metrics sleep"
   sleep sec
 end

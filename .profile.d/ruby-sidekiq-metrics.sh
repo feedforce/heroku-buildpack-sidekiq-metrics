@@ -24,7 +24,7 @@ setup_metrics() {
     return 1
   fi
 
-  "$SIDEKIQ_METRICS" 20 &
+  "$SIDEKIQ_METRICS" 10 &
 }
 
 setup_metrics
