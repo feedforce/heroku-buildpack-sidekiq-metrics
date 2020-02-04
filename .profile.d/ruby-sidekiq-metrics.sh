@@ -24,6 +24,7 @@ setup_metrics() {
     return 1
   fi
 
+  echo "sidekiq-metrics start..."
   "$SIDEKIQ_METRICS" 10 &
 }
 
