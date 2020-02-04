@@ -11,23 +11,20 @@ type bundle || true
 echo 'env ->'
 env
 
-SIDEKIQMON=${1:-/app/vendor/bundle/bin/sidekiqmon}
+SIDEKIQ_METRICS=${1:-/app/bin/sidekiq-metrics}
 
 setup_metrics() {
-  # don't do anything if we don't have a metrics url.
-  if [[ -z "$REDIS_URL" ]] || [[ "${DYNO}" = run\.* ]]; then
+  # Collect sidekiq metrics only one Dyno
+  if [ -z "$REDIS_URL" ] || [ "$DYNO" != web.1 ]; then
     return 0
   fi
 
-  if [ ! -x "$SIDEKIQMON" ]; then
-    echo "No sidekiqmon executable found. Not starting."
+  if [ ! -x "$SIDEKIQ_METRICS" ]; then
+    echo "No sidekiq-metrics executable found. Not starting."
     return 1
   fi
 
-  (while true; do
-     "$SIDEKIQMON"
-     sleep 10
-   done) &
+  "$SIDEKIQ_METRICS" 20 &
 }
 
 setup_metrics

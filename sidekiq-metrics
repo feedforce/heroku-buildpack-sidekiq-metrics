@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'bundler/setup'
+require 'sidekiq/api'
+
+sec = ARGV[0].to_i || 60
+
+loop do
+  Sidekiq::Queue.all.each do |q|
+    # compatible with custom log-based metrics of Librato
+    # https://devcenter.heroku.com/articles/librato#custom-log-based-metrics
+    puts "measure#sidekiq.#{q.name}.count=#{q.size}"
+    puts "measure#sidekiq.#{q.name}.latency=#{q.latency}"
+  end
+
+  sleep sec
+end

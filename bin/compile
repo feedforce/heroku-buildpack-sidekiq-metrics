@@ -15,3 +15,8 @@ BUILD_DIR=${1:-}
 arrow 'Setting up .profile.d to automatically run sidekiq-metrics agent...'
 mkdir -p "${BUILD_DIR}/.profile.d"
 cp .profile.d/ruby-sidekiq-metrics.sh "${BUILD_DIR}/.profile.d"
+
+arrow 'Setting up sidekiq-metrics agent...'
+mkdir -p "${BUILD_DIR}/bin"
+cp sidekiq-metrics "${BUILD_DIR}/bin"
+chmod +x "${BUILD_DIR}/bin"
