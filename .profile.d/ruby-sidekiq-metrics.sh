@@ -1,16 +1,5 @@
 #!/bin/bash -eu
 
-# echo "PATH -> $PATH"
-# type bundle || true
-# 
-# PATH=/app/bin:"$PATH"
-# 
-# echo "PATH -> $PATH"
-# type bundle || true
-# 
-# echo 'env ->'
-# env
-
 SIDEKIQ_METRICS=${1:-/app/bin/sidekiq-metrics}
 
 setup_metrics() {
