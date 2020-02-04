@@ -6,7 +6,7 @@ require 'sidekiq/api'
 
 sec = ARGV[0].to_i || 60
 
-loop do
+# loop do
   Sidekiq::Queue.all.each do |q|
     # compatible with custom log-based metrics of Librato
     # https://devcenter.heroku.com/articles/librato#custom-log-based-metrics
@@ -14,6 +14,6 @@ loop do
     puts "measure#sidekiq.#{q.name}.latency=#{q.latency}"
   end
 
-  puts "sidekiq-metrics sleep"
-  sleep sec
-end
+#   puts "sidekiq-metrics sleep"
+#   sleep sec
+# end

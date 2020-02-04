@@ -25,7 +25,10 @@ setup_metrics() {
   fi
 
   echo "sidekiq-metrics start..."
-  "$SIDEKIQ_METRICS" 10 &
+  (while true; do
+     "$SIDEKIQ_METRICS"
+     sleep 10
+   done) &
 }
 
 setup_metrics
