@@ -8,6 +8,9 @@ PATH=/app/bin:"$PATH"
 echo "PATH -> $PATH"
 type bundle || true
 
+echo 'env ->'
+env
+
 SIDEKIQMON=${1:-/app/vendor/bundle/bin/sidekiqmon}
 
 setup_metrics() {
