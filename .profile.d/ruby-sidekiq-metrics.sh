@@ -10,7 +10,7 @@ SIDEKIQ_METRICS_DYNO=${SIDEKIQ_METRICS_DYNO:-web.1}
 SIDEKIQ_METRICS_INTERVAL=${SIDEKIQ_METRICS_INTERVAL:-30}
 
 setup_metrics() {
-  # Collect sidekiq metrics only one Dyno
+  # Collect sidekiq metrics on only one Dyno
   if [ -z "$REDIS_URL" ] || [ "$DYNO" != "$SIDEKIQ_METRICS_DYNO" ]; then
     return 0
   fi
