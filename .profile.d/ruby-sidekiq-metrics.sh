@@ -7,7 +7,7 @@
 SIDEKIQ_METRICS=${1:-/app/bin/sidekiq-metrics}
 
 SIDEKIQ_METRICS_DYNO=${SIDEKIQ_METRICS_DYNO:-web.1}
-SIDEKIQ_METRICS_SLEEP_SEC=${SIDEKIQ_METRICS_SLEEP_SEC:-30}
+SIDEKIQ_METRICS_INTERVAL=${SIDEKIQ_METRICS_INTERVAL:-30}
 
 setup_metrics() {
   # Collect sidekiq metrics only one Dyno
@@ -23,7 +23,7 @@ setup_metrics() {
   echo "sidekiq-metrics start..."
   (while true; do
      "$SIDEKIQ_METRICS"
-     sleep "$SIDEKIQ_METRICS_SLEEP_SEC"
+     sleep "$SIDEKIQ_METRICS_INTERVAL"
    done) &
 }
 
