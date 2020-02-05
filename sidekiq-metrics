@@ -6,6 +6,8 @@ require 'sidekiq/api'
 
 queues = Sidekiq::Queue.all
 
+exit 0 if queues.empty?
+
 # e.g. sample#sidekiq.default.size=0 sample#sidekiq.mailer.size=0
 puts queues.map {|q| "sample#sidekiq.#{q.name}.size=#{q.size}" }.join(' ')
 
