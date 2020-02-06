@@ -21,7 +21,7 @@ setup_metrics() {
   fi
 
   echo "sidekiq-metrics start..."
-  ("$SIDEKIQ_METRICS" "$SIDEKIQ_METRICS_INTERVAL") &
+  "$SIDEKIQ_METRICS" "$SIDEKIQ_METRICS_INTERVAL" &
 }
 
 setup_metrics
