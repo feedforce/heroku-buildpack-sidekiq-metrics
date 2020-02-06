@@ -11,6 +11,9 @@ SIDEKIQ_METRICS_INTERVAL=${SIDEKIQ_METRICS_INTERVAL:-30}
 SIDEKIQ_METRICS_TYPE=${SIDEKIQ_METRICS_TYPE:-sample}
 
 setup_metrics() {
+  echo "It caused any error!!!"
+  return 1
+
   # Collect sidekiq metrics on only one Dyno
   if [ -z "$REDIS_URL" ] || [ "$DYNO" != "$SIDEKIQ_METRICS_DYNO" ]; then
     return 0
