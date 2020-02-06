@@ -6,6 +6,10 @@ require 'sidekiq/api'
 
 INTERVAL = ARGV[0].to_i
 
+puts "Before -> $stdout.sync: #{$stdout.sync}"
+$stdout.sync = true # print stdout immediately
+puts "After -> $stdout.sync: #{$stdout.sync}"
+
 loop do
   queues = Sidekiq::Queue.all
 
