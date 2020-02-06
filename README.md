@@ -23,6 +23,7 @@ sample#sidekiq.default.latency=0 sample#sidekiq.mailer.latency=0
 
 ## Requirements
 
+* [bundler](https://github.com/rubygems/bundler)
 * [heroku/ruby](https://github.com/heroku/heroku-buildpack-ruby) buildpack
 * [sidekiq](https://github.com/mperham/sidekiq)
 
