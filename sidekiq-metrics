@@ -4,12 +4,14 @@
 require 'bundler/setup'
 require 'sidekiq/api'
 
+TYPE = ARGV[0].to_i
+
 queues = Sidekiq::Queue.all
 
 exit 0 if queues.empty?
 
 # e.g. sample#sidekiq.default.size=0 sample#sidekiq.mailer.size=0
-puts queues.map {|q| "sample#sidekiq.#{q.name}.size=#{q.size}" }.join(' ')
+puts queues.map {|q| "#{TYPE}#sidekiq.#{q.name}.size=#{q.size}" }.join(' ')
 
 # e.g. sample#sidekiq.default.latency=0 sample#sidekiq.mailer.latency=0
-puts queues.map {|q| "sample#sidekiq.#{q.name}.latency=#{q.latency}" }.join(' ')
+puts queues.map {|q| "#{TYPE}#sidekiq.#{q.name}.latency=#{q.latency}" }.join(' ')

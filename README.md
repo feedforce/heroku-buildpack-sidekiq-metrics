@@ -33,6 +33,9 @@ sample#sidekiq.default.latency=0 sample#sidekiq.mailer.latency=0
     * The Dyno name which the `sidekiq-metrics` script boot as daemon
 * `SIDEKIQ_METRICS_INTERVAL` (Default: `30`)
     * Polling interval (seconds) which the `sidekiq-metrics` script is called
+* `SIDEKIQ_METRICS_TYPE` (Default: `sample`)
+    * You can set `sample` or `measure`. Although you can set `count`, it would not make sense for sidekiq metrics
+    * See also [Librato Custom log-based metrics](https://devcenter.heroku.com/articles/librato#custom-log-based-metrics)
 
 ## Configure from CLI
 

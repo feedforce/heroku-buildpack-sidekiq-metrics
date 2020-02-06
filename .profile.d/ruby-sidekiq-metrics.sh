@@ -8,6 +8,7 @@ SIDEKIQ_METRICS=${1:-/app/bin/sidekiq-metrics}
 
 SIDEKIQ_METRICS_DYNO=${SIDEKIQ_METRICS_DYNO:-web.1}
 SIDEKIQ_METRICS_INTERVAL=${SIDEKIQ_METRICS_INTERVAL:-30}
+SIDEKIQ_METRICS_TYPE=${SIDEKIQ_METRICS_TYPE:-sample}
 
 setup_metrics() {
   # Collect sidekiq metrics on only one Dyno
@@ -22,7 +23,7 @@ setup_metrics() {
 
   echo "sidekiq-metrics start..."
   (while true; do
-     "$SIDEKIQ_METRICS"
+     "$SIDEKIQ_METRICS" "$SIDEKIQ_METRICS_TYPE"
      sleep "$SIDEKIQ_METRICS_INTERVAL"
    done) &
 }
