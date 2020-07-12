@@ -7,6 +7,7 @@ require 'sidekiq/api'
 TYPE = ARGV[0]
 
 queues = Sidekiq::Queue.all
+stats = Sidekiq::Stats.new
 
 exit 0 if queues.empty?
 
@@ -15,3 +16,6 @@ puts queues.map {|q| "#{TYPE}#sidekiq.#{q.name}.size=#{q.size}" }.join(' ')
 
 # e.g. sample#sidekiq.default.latency=0 sample#sidekiq.mailer.latency=0
 puts queues.map {|q| "#{TYPE}#sidekiq.#{q.name}.latency=#{q.latency}" }.join(' ')
+
+# e.g. sample#sidekiq.all.size=0
+puts "#{TYPE}#sidekiq.all.size=#{stats.enqueued}"
