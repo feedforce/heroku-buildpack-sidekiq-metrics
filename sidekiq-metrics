@@ -6,6 +6,11 @@ require 'sidekiq/api'
 
 TYPE = ARGV[0]
 
+Sidekiq.configure_client do |config|
+  # For a puma worker, it won't be pushing on all 5 threads simultaneously. 2 (5/2) connections should suffice.
+  config.redis = { url: ENV['REDIS_URL'], network_timeout: 5, size: 2, ssl_params: { verify_mode: OpenSSL::SSL::VERIFY_NONE } }
+end
+
 queues = Sidekiq::Queue.all
 stats = Sidekiq::Stats.new
 
